@@ -1,7 +1,7 @@
 use std::{fmt::Display, path::PathBuf};
 
-use guid_create::GUID;
 use serde::{Deserialize, Serialize};
+use uuid::Uuid;
 
 #[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct Package {
@@ -13,11 +13,11 @@ pub struct Package {
 
 #[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct PackageVersion {
-    pub id: GUID,
+    pub id: Uuid,
     pub name: String,
     pub version: String, // TODO: make this a proper version struct
     pub required: Vec<PathBuf>,
-    pub dependencies: Vec<GUID>,
+    pub dependencies: Vec<Uuid>,
     pub flavor: String,
 }
 
