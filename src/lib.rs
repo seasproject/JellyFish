@@ -1,26 +1,9 @@
-#![cfg_attr(feature = "rocket", feature(decl_macro))]
-
-#[cfg(feature = "rocket")]
-#[macro_use]
-extern crate rocket;
-
 use std::{fmt::Display, path::PathBuf};
 
 use guid_create::GUID;
-
-#[cfg(feature = "rocket")]
-pub mod jelly_rocket;
-#[cfg(feature = "request")]
-pub mod request;
-
-#[cfg(any(feature = "request", feature = "rocket"))]
 use serde::{Deserialize, Serialize};
 
-#[cfg_attr(
-    any(feature = "rocket", feature = "request"),
-    derive(Deserialize, Serialize)
-)]
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct Package {
     pub author: String,
     pub name: String,
@@ -28,11 +11,7 @@ pub struct Package {
     pub versions: Vec<PackageVersion>,
 }
 
-#[cfg_attr(
-    any(feature = "rocket", feature = "request"),
-    derive(Deserialize, Serialize)
-)]
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct PackageVersion {
     pub id: GUID,
     pub name: String,
