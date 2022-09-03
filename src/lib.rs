@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
 #[derive(Debug, Clone, Deserialize, Serialize)]
-pub struct Package {
+pub struct JellyFishPackage {
     pub author: String,
     pub name: String,
     pub friendly_name: String,
@@ -21,7 +21,7 @@ pub struct PackageVersion {
     pub flavor: String,
 }
 
-impl Display for Package {
+impl Display for JellyFishPackage {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(
             f,
