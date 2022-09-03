@@ -1,7 +1,6 @@
 use std::{fmt::Display, path::PathBuf};
 
 use serde::{Deserialize, Serialize};
-use uuid::Uuid;
 
 #[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct JellyFishPackage {
@@ -13,12 +12,11 @@ pub struct JellyFishPackage {
 
 #[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct PackageVersion {
-    pub id: Uuid,
     pub name: String,
-    pub version: String, // TODO: make this a proper version struct
+    pub version: String,
     pub required: Vec<PathBuf>,
-    pub dependencies: Vec<Uuid>,
-    pub flavor: String,
+    pub dependencies: Vec<String>, // A vec of URLS pointing to required packages. These packages MUST be in the JellyFish format (or any flavour)
+    pub flavour: String,
 }
 
 impl Display for JellyFishPackage {
